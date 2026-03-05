@@ -116,16 +116,25 @@ git commit -m "feat: add specific feature"
 
 ## Execution Handoff
 
-After saving and committing the plan, present a ready-to-use command block. Do NOT ask the user to choose — just give them the next step.
+After saving and committing the plan, use `AskUserQuestion` to present execution options. This gives the user a clickable UI instead of text they have to parse.
 
-```
-Plan saved to `docs/plans/<actual-filename>.md`.
+**Call AskUserQuestion with:**
+- question: "Plan saved to `docs/plans/<actual-filename>.md`. How do you want to proceed?"
+- header: "Execution"
+- options:
+  1. **"/clear + subagent-driven-development" (Recommended)** — "Clear context, then run subagent-driven-development with plan path. Best for fresh context window."
+  2. **"/clear + executing-plans"** — "Clear context, then run executing-plans with plan path. Batch execution with review checkpoints."
+  3. **"Continue: subagent-driven-development"** — "Stay in this session. Context may be constrained."
+  4. **"Continue: executing-plans"** — "Stay in this session. Batch execution with review checkpoints."
 
-Run /clear to free up context, then invoke an execution skill:
+**After user selects:**
 
-  subagent-driven-development docs/plans/<actual-filename>.md
-  or
-  executing-plans docs/plans/<actual-filename>.md
-```
+If option starts with "/clear":
+- Print the ready-to-use command block so the user can copy it after `/clear`:
+  ```
+  Run /clear, then paste:
+    subagent-driven-development docs/plans/<actual-filename>.md
+  ```
 
-**Important:** Replace `<actual-filename>` with the real plan file path. The user needs this because `/clear` wipes conversation context.
+If option starts with "Continue":
+- Invoke the chosen execution skill directly in this session.
