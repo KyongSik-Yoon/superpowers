@@ -3,6 +3,8 @@
 > **Fork of [obra/superpowers](https://github.com/obra/superpowers)** — stripped to Claude Code only.
 > Upstream version: v4.3.1. For Cursor, Codex, or OpenCode support, use the original.
 
+[한국어](README.ko.md)
+
 Superpowers is a complete software development workflow for Claude Code, built on top of a set of composable "skills" and some initial instructions that make sure your agent uses them.
 
 ## What's different in this fork
