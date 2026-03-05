@@ -116,21 +116,32 @@ git commit -m "feat: add specific feature"
 
 ## Execution Handoff
 
-After saving the plan, offer execution choice:
+### Context Reset (Recommended)
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+After saving and committing the plan, **recommend a context reset before implementation.** Brainstorming + plan writing consumes significant context window. Starting implementation in a fresh session gives the full context window to the implementation phase.
 
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+Present this to the user:
 
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+> "Plan saved and committed to `docs/plans/<filename>.md`. Brainstorming and plan writing have consumed significant context. **Starting implementation in a fresh session is recommended** so the full context window is available for implementation.
+>
+> **Fresh session (recommended):** Open a new session in the worktree, then choose an execution approach:
+> - `subagent-driven-development` — fresh subagent per task, review between tasks, fast iteration
+> - `executing-plans` — batch execution with review checkpoints
+>
+> **Continue in this session:** Possible, but context may become constrained during implementation.
+>
+> Which do you prefer?"
 
-**Which approach?"**
+### If Fresh Session Chosen
 
-**If Subagent-Driven chosen:**
+End here. The user will open a new conversation in the worktree and invoke their chosen execution skill with the plan doc path.
+
+### If Continue Chosen
+
+Ask which execution approach:
+
+**1. Subagent-Driven** - Fresh subagent per task, review between tasks, fast iteration
 - **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Stay in this session
-- Fresh subagent per task + code review
 
-**If Parallel Session chosen:**
-- Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses superpowers:executing-plans
+**2. Batch Execution** - Execute tasks in batches with review checkpoints
+- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
