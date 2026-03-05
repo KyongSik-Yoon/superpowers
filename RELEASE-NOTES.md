@@ -1,6 +1,6 @@
 # Release Notes
 
-## v5.0.0 (2026-03-05)
+## v0.1.0 (2026-03-05)
 
 ### Breaking Changes
 
